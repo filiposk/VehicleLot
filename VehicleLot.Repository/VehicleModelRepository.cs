@@ -12,22 +12,22 @@ using System.Data.Entity.Validation;
 
 namespace VehicleLot.Repository
 {
-    public class GenericRepository<Vehicle> : IGenericRepository<Vehicle> where Vehicle : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly DatabaseContext _context;
-        private IDbSet<Vehicle> _entities;
+        private IDbSet<T> _entities;
 
         public GenericRepository(DatabaseContext context)
         {
             this._context = context;
         }
 
-        public Vehicle GetById(object id)
+        public T GetById(object id)
         {
             return this.Entities.Find(id);
         }
 
-        public void Insert(Vehicle entity)
+        public void Insert(T entity)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace VehicleLot.Repository
             }
         }
 
-        public void Update(Vehicle entity)
+        public void Update(T entity)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace VehicleLot.Repository
             }
         }
 
-        public void Delete(Vehicle entity)
+        public void Delete(T entity)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace VehicleLot.Repository
             }
         }
 
-        public virtual IQueryable<Vehicle> Table
+        public virtual IQueryable<T> Table
         {
             get
             {
@@ -118,13 +118,13 @@ namespace VehicleLot.Repository
             }
         }
 
-        private IDbSet<Vehicle> Entities
+        private IDbSet<T> Entities
         {
             get
             {
                 if (_entities == null)
                 {
-                    _entities = _context.Set<Vehicle>();
+                    _entities = _context.Set<T>();
                 }
                 return _entities;
             }
