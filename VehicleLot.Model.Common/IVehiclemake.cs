@@ -13,7 +13,5 @@ namespace VehicleLot.Model.Common
         string Abrv { get; set; }
 
         ICollection<IVehicleModel> VehicleModels { get; set; }
-
     }
-
 }

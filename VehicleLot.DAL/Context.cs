@@ -12,5 +12,7 @@ namespace VehicleLot.DAL
     {
         public DbSet<VehicleModel> VehicleModels { get; set; }
         public DbSet<VehicleMake> VehicleMakes { get; set; }
+
+        
     }
 }

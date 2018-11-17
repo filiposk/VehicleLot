@@ -31,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,7 +48,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbEntityValidationException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VehicleRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VehicleLot.DAL\VehicleLot.DAL.csproj">
+      <Project>{eb43c3cb-6288-4906-9947-4c62b717855f}</Project>
+      <Name>VehicleLot.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VehicleLot.Model.Common\VehicleLot.Model.Common.csproj">
+      <Project>{b1ec920e-9274-4b55-a417-f69dc9703a48}</Project>
+      <Name>VehicleLot.Model.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VehicleLot.Model\VehicleLot.Model.csproj">
+      <Project>{b5d30696-3855-4f7b-acbb-0624e08c7460}</Project>
+      <Name>VehicleLot.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VehicleLot.Repository.Common\VehicleLot.Repository.Common.csproj">
+      <Project>{58406b29-6784-4054-a47b-53df59f7390c}</Project>
+      <Name>VehicleLot.Repository.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
