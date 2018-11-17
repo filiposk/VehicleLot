@@ -13,7 +13,7 @@ using System.Linq.Expressions;
 
 namespace VehicleLot.Repository
 {
-    class VehicleMakeRepository : IGenericRepository<VehicleMake>
+    public class VehicleMakeRepository : IGenericRepository<VehicleMake>
     {
         private readonly DatabaseContext _context;
 
