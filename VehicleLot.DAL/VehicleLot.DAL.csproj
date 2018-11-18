@@ -68,6 +68,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VehicleLot.Model.Common\VehicleLot.Model.Common.csproj">
+      <Project>{b1ec920e-9274-4b55-a417-f69dc9703a48}</Project>
+      <Name>VehicleLot.Model.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VehicleLot.Model\VehicleLot.Model.csproj">
       <Project>{b5d30696-3855-4f7b-acbb-0624e08c7460}</Project>
       <Name>VehicleLot.Model</Name>

@@ -1,133 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VehicleLot.Repository.Common;
 using VehicleLot.DAL;
 using VehicleLot.Model;
-using System.Data.Entity;
-using System.Xml.Linq;
-using System.Data.Entity.Validation;
+using System.Linq.Expressions;
+using VehicleLot.Model.Common;
 
 namespace VehicleLot.Repository
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class VehicleModelRepository : IGenericRepository<IVehicleModel>
     {
         private readonly DatabaseContext _context;
-        private IDbSet<T> _entities;
 
-        public GenericRepository(DatabaseContext context)
+
+        public VehicleModelRepository(DatabaseContext context)
         {
             this._context = context;
         }
 
-        public T GetById(object id)
+        public IQueryable<IVehicleModel> GetAll()
         {
-            return this.Entities.Find(id);
+            return _context.VehicleModels;
         }
 
-        public void Insert(T entity)
+        public IQueryable<IVehicleModel> FindBy(Expression<Func<IVehicleModel, bool>> predicate)
         {
-            try
-            {
-                if (entity == null)
-                {
-                    throw new ArgumentNullException("entity");
-                }
-                this.Entities.Add(entity);
-                this._context.SaveChanges();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                var msg = string.Empty;
+            return _context.VehicleModels.Where(predicate);
+        }
 
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        msg += string.Format("Property: {0} Error: {1}",
-                        validationError.PropertyName, validationError.ErrorMessage) + Environment.NewLine;
-                    }
-                }
+        public void Add(IVehicleModel vehicleModel)
+        {
+            vehicleModel.Id = Guid.NewGuid();
+            _context.VehicleModels.Add(vehicleModel);
+        }
 
-                var fail = new Exception(msg, dbEx);
-                throw fail;
+        public void Edit(IVehicleModel vehicleModel)
+        {
+            var edit = _context.VehicleModels.SingleOrDefault(vm => vm.Id == vehicleModel.Id);
+            if (edit != null)
+            {
+                edit.Name = vehicleModel.Name;
+                edit.Abrv = vehicleModel.Abrv;
+                edit.VehicleMakeId = vehicleModel.VehicleMakeId;
             }
         }
 
-        public void Update(T entity)
+        public void Delete(IVehicleModel vehicleModel)
         {
-            try
-            {
-                if (entity == null)
-                {
-                    throw new ArgumentNullException("entity");
-                }
-                this._context.SaveChanges();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                var msg = string.Empty;
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        msg += Environment.NewLine + string.Format("Property: {0} Error: {1}",
-                        validationError.PropertyName, validationError.ErrorMessage);
-                    }
-                }
-                var fail = new Exception(msg, dbEx);
-                throw fail;
-            }
+            _context.VehicleModels.Remove(vehicleModel);
         }
 
-        public void Delete(T entity)
+        public void Save()
         {
-            try
-            {
-                if (entity == null)
-                {
-                    throw new ArgumentNullException("entity");
-                }
-                this.Entities.Remove(entity);
-                this._context.SaveChanges();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                var msg = string.Empty;
-
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        msg += Environment.NewLine + string.Format("Property: {0} Error: {1}",
-                        validationError.PropertyName, validationError.ErrorMessage);
-                    }
-                }
-                var fail = new Exception(msg, dbEx);
-                throw fail;
-            }
-        }
-
-        public virtual IQueryable<T> Table
-        {
-            get
-            {
-                return this.Entities;
-            }
-        }
-
-        private IDbSet<T> Entities
-        {
-            get
-            {
-                if (_entities == null)
-                {
-                    _entities = _context.Set<T>();
-                }
-                return _entities;
-            }
+            _context.SaveChanges();
         }
     }
 }

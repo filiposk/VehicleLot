@@ -51,5 +51,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VehicleLot.Model.Common\VehicleLot.Model.Common.csproj">
+      <Project>{b1ec920e-9274-4b55-a417-f69dc9703a48}</Project>
+      <Name>VehicleLot.Model.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

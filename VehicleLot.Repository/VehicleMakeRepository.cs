@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VehicleLot.Repository.Common;
 using VehicleLot.DAL;
 using VehicleLot.Model;
-using System.Data.Entity;
-using System.Xml.Linq;
-using System.Data.Entity.Validation;
 using System.Linq.Expressions;
+using VehicleLot.Model.Common;
+using System.Collections.Generic;
 
 namespace VehicleLot.Repository
 {
-    public class VehicleMakeRepository : IGenericRepository<VehicleMake>
+    public class VehicleMakeRepository : IGenericRepository<IVehicleMake>
     {
         private readonly DatabaseContext _context;
 
@@ -22,22 +18,22 @@ namespace VehicleLot.Repository
             this._context = context;
         }
         
-        public IQueryable<VehicleMake> GetAll()
+        public IQueryable<IVehicleMake> GetAll()
         {
             return _context.VehicleMakes;
         }
 
-        public IQueryable<VehicleMake> FindBy(Expression<Func<VehicleMake, bool>> predicate)
+        public IQueryable<IVehicleMake> FindBy(Expression<Func<IVehicleMake, bool>> predicate)
         {
             return _context.VehicleMakes.Where(predicate);
         }
 
-        public void Add(VehicleMake vehicleMake)
+        public void Add(IVehicleMake vehicleMake)
         {
             _context.VehicleMakes.Add(vehicleMake);
         }
 
-        public void Edit(VehicleMake vehicleMake)
+        public void Edit(IVehicleMake vehicleMake)
         {
             var edti =_context.VehicleMakes.SingleOrDefault(vm => vm.Id == vehicleMake.Id);
             if (edti !=null)
@@ -48,7 +44,7 @@ namespace VehicleLot.Repository
             }
         }
 
-        public void Delete(VehicleMake vehicleMake)
+        public void Delete(IVehicleMake vehicleMake)
         {
             _context.VehicleMakes.Remove(vehicleMake);
         }

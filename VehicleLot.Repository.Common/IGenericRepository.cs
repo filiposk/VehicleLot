@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VehicleLot.Repository.Common
 {
-    public interface IGenericRepository<T> where T :  class
+    public interface IGenericRepository<T> 
     {
         IQueryable<T> GetAll();
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);

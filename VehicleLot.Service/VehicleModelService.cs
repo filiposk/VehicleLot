@@ -1,32 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VehicleLot.DAL;
-using VehicleLot.Repository;
-using VehicleLot.Repository.Common;
+﻿using VehicleLot.Repository.Common;
+using VehicleLot.Model;
 using VehicleLot.Service.Common;
+using System;
+using System.Linq;
+using System.Linq.Expressions;
+using VehicleLot.Model.Common;
 
 namespace VehicleLot.Service
 {
-    public class VehicleModelService : IVehicleService 
+    public class VehicleModelService : IVehicleModelService 
     {
         
-        public VehicleModelService(IGenericRepository<VehicleModelRepository> repository)
+        public VehicleModelService(IGenericRepository<IVehicleModel> repository)
         {
-            this.Repository = repository;
+            this.repository = repository;
         }
-            
-        protected IGenericRepository<VehicleModelRepository> Repository { get; set; }
-        
-        public void Add(VehicleModelRepository modelRepository)
-        {
-            if (!Repository.GetAll().Where(p => p.)
-            {
 
-            }
+        private IGenericRepository<IVehicleModel> repository;
+
+        public IQueryable<IVehicleModel> GetAll()
+        {
+            return this.repository.GetAll();
+            
         }
-        
+
+        public IQueryable<IVehicleModel> FindBy(Expression<Func<IVehicleModel, bool>> predicate)
+        {
+            return this.repository.FindBy(predicate);
+        }
+
+        public void Add(IVehicleModel model)
+        {
+            this.repository.Add(model);
+        }
+
+        public void Delete(IVehicleModel model)
+        {
+            this.repository.Delete(model);
+        }
+
+        public void Edit(IVehicleModel model)
+        {
+            this.repository.Edit(model);
+        }
+
+        public void Save()
+        {
+            this.repository.Save();
+        }
     }
 }

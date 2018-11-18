@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VehicleLot.Model.Common;
 
 namespace VehicleLot.Model
 {
-    public class VehicleModel
+    public class VehicleModel : IVehicleModel
     {
         public Guid Id { get; set; }
         public Guid VehicleMakeId { get; set; }
