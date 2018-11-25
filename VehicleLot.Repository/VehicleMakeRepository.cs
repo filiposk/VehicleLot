@@ -11,11 +11,11 @@ namespace VehicleLot.Repository
 {
     public class VehicleMakeRepository : IGenericRepository<IVehicleMake>
     {
-        private readonly DatabaseContext _context;
+        private readonly IDatabaseContext _context;
 
-        public VehicleMakeRepository(DatabaseContext context)
+        public VehicleMakeRepository(IDatabaseContext context)
         {
-            this._context = context;
+            this. _context = context;
         }
         
         public IQueryable<IVehicleMake> GetAll()

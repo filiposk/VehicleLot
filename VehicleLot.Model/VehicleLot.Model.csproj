@@ -33,15 +33,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VehicleLot.Model.Common\VehicleLot.Model.Common.csproj">
-      <Project>{b1ec920e-9274-4b55-a417-f69dc9703a48}</Project>
+      <Project>{B1EC920E-9274-4B55-A417-F69DC9703A48}</Project>
       <Name>VehicleLot.Model.Common</Name>
     </ProjectReference>
   </ItemGroup>
