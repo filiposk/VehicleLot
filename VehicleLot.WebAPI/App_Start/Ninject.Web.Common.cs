@@ -4,6 +4,8 @@
 namespace VehicleLot.WebAPI.App_Start
 {
     using System;
+    using System.Linq;
+    using System.Reflection;
     using System.Web;
 
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -16,9 +18,7 @@ namespace VehicleLot.WebAPI.App_Start
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
-        /// <summary>
-        /// Starts the application
-        /// </summary>
+        
         public static void Start() 
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
@@ -34,7 +34,10 @@ namespace VehicleLot.WebAPI.App_Start
         
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            var settings = new NinjectSettings();
+            settings.LoadExtensions = true;
+            settings.ExtensionSearchPatterns = settings.ExtensionSearchPatterns.Union(new string[] { "VehicleLot.*.dll" }).ToArray();
+            var kernel = new StandardKernel(settings);
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);

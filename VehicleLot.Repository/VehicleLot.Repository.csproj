@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DIModule.cs" />
-    <Compile Include="IGeneric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VehicleMakeRepository.cs" />
     <Compile Include="VehicleModelRepository.cs" />

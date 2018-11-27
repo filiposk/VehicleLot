@@ -16,5 +16,6 @@ namespace VehicleLot.Service.Common
         void Delete(IVehicleMake make);
         void Edit(IVehicleMake make);
         void Save();
+        
     }
 }
