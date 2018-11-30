@@ -313,6 +313,14 @@
       <Project>{b5d30696-3855-4f7b-acbb-0624e08c7460}</Project>
       <Name>VehicleLot.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VehicleLot.Repository.Common\VehicleLot.Repository.Common.csproj">
+      <Project>{58406b29-6784-4054-a47b-53df59f7390c}</Project>
+      <Name>VehicleLot.Repository.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VehicleLot.Repository\VehicleLot.Repository.csproj">
+      <Project>{a7b7c8ae-18eb-43b0-beb1-f261343d084c}</Project>
+      <Name>VehicleLot.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VehicleLot.Service.Common\VehicleLot.Service.Common.csproj">
       <Project>{23187c50-8cf3-471f-87ff-95054e4b08c1}</Project>
       <Name>VehicleLot.Service.Common</Name>

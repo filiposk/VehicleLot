@@ -1,58 +1,48 @@
 ﻿using System;
 using System.Linq;
-using VehicleLot.Repository.Common;
-using VehicleLot.DAL;
-using VehicleLot.Model;
 using System.Linq.Expressions;
-using VehicleLot.Model.Common;
+using VehicleLot.Model;
+using VehicleLot.Repository.Common;
 
 namespace VehicleLot.Repository
 {
-    public class VehicleModelRepository : IGenericRepository<IVehicleModel>
+    public class VehicleModelRepository : IVehicleModelRepository
     {
-        private readonly DatabaseContext _context;
+        public IGenericRepository<VehicleModel> Repository { get; set; }
 
-
-        public VehicleModelRepository(DatabaseContext context)
+        public VehicleModelRepository(IGenericRepository<VehicleModel> repository)
         {
-            this._context = context;
+            this.Repository = repository;
         }
 
-        public IQueryable<IVehicleModel> GetAll()
+        public void Add(VehicleModel model)
         {
-            return _context.VehicleModels;
+            this.Repository.Add(model);
         }
 
-        public IQueryable<IVehicleModel> FindBy(Expression<Func<IVehicleModel, bool>> predicate)
+        public void Delete(Guid id)
         {
-            return _context.VehicleModels.Where(predicate);
+            this.Repository.Delete(id);
         }
 
-        public void Add(IVehicleModel vehicleModel)
+        public void Edit(VehicleModel model)
         {
-            vehicleModel.Id = Guid.NewGuid();
-            _context.VehicleModels.Add(vehicleModel);
+            this.Repository.Edit(model);
         }
 
-        public void Edit(IVehicleModel vehicleModel)
+        public IQueryable<VehicleModel> FindBy(Expression<Func<VehicleModel, bool>> predicate)
         {
-            var edit = _context.VehicleModels.SingleOrDefault(vm => vm.Id == vehicleModel.Id);
-            if (edit != null)
-            {
-                edit.Name = vehicleModel.Name;
-                edit.Abrv = vehicleModel.Abrv;
-                edit.VehicleMakeId = vehicleModel.VehicleMakeId;
-            }
+            return this.Repository.FindBy(predicate);
         }
 
-        public void Delete(IVehicleModel vehicleModel)
+        public IQueryable<VehicleModel> GetAll()
         {
-            _context.VehicleModels.Remove(vehicleModel);
+            return this.Repository.GetAll();
         }
 
         public void Save()
         {
-            _context.SaveChanges();
+            this.Repository.Save();
         }
     }
 }

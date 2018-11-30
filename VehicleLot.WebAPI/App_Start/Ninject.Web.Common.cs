@@ -7,17 +7,19 @@ namespace VehicleLot.WebAPI.App_Start
     using System.Linq;
     using System.Reflection;
     using System.Web;
-
+    using System.Web.Http;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
     using Ninject.Web.Common;
     using Ninject.Web.Common.WebHost;
+    using Ninject.Web.WebApi;
+    using VehicleLot.Repository;
+    using VehicleLot.Repository.Common;
 
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
-
         
         public static void Start() 
         {
@@ -42,7 +44,11 @@ namespace VehicleLot.WebAPI.App_Start
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+
                 RegisterServices(kernel);
+     
                 return kernel;
             }
             catch
@@ -52,7 +58,6 @@ namespace VehicleLot.WebAPI.App_Start
             }
         }
 
-        
         private static void RegisterServices(IKernel kernel)
         {
 

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using VehicleLot.Model;
 using VehicleLot.Model.Common;
 using VehicleLot.Service.Common;
 
@@ -24,26 +22,32 @@ namespace VehicleLot.WebAPI.Controllers
             return Service.GetAll();
         }
 
-        public IQueryable<IVehicleModel> FindMyVehicleModel(Expression<Func<IVehicleModel, bool>> predicate)
+        public IQueryable<VehicleModel> FindMyVehicleModel(Expression<Func<VehicleModel, bool>> predicate)
         {
             return Service.FindBy(predicate);
         }
 
-        public void AddMyVehicleModel(IVehicleModel model)
+        public void AddMyVehicleModel(VehicleModel model)
         {
             Service.Add(model);
         }
 
-        public void EditMyVehicleModel(IVehicleModel model)
+        [HttpGet]
+        [Route("vehicle/model/")]
+        public void EditMyVehicleModel(VehicleModel model)
         {
             Service.Edit(model);
         }
 
-        public void DeleteMyVehicleModel(IVehicleModel model)
+        [HttpDelete]
+        [Route("vehicle/model/{id}")]
+        public void DeleteMyVehicleModel([FromUri] Guid id)
         {
-            Service.Delete(model);
+            Service.Delete(id);
         }
 
+        [HttpPost]
+        [Route("vehicle/model/{id}")]
         public void SaveMyVehicleModel()
         {
             Service.Save();

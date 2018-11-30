@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace VehicleLot.Model.Common
 {
-    public interface IVehicleMake
+    public interface IVehicleMake : IEntity
     {
-        Guid Id { get; set; }
         string Name { get; set; }
         string Abrv { get; set; }
 

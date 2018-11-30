@@ -7,10 +7,8 @@ using VehicleLot.Model.Common;
 
 namespace VehicleLot.Model
 {
-    public class VehicleModel : Entity, IVehicleModel
+    public class Entity : IEntity
     {
-        public Guid VehicleMakeId { get; set; }
-        public string Name { get; set; }
-        public string Abrv { get; set; }
+        public Guid Id { get; set; }
     }
 }

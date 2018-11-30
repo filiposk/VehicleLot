@@ -39,7 +39,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IGenericRepository.cs" />
+    <Compile Include="IVehicleMakeRepository.cs" />
+    <Compile Include="IVehicleModelRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VehicleLot.Model.Common\VehicleLot.Model.Common.csproj">
+      <Project>{B1EC920E-9274-4B55-A417-F69DC9703A48}</Project>
+      <Name>VehicleLot.Model.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VehicleLot.Model\VehicleLot.Model.csproj">
+      <Project>{B5D30696-3855-4F7B-ACBB-0624E08C7460}</Project>
+      <Name>VehicleLot.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

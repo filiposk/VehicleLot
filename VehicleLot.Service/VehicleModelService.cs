@@ -8,38 +8,37 @@ using VehicleLot.Model.Common;
 
 namespace VehicleLot.Service
 {
-    public class VehicleModelService : IVehicleModelService 
+    public class VehicleModelService : IVehicleModelService
     {
-        
-        public VehicleModelService(IGenericRepository<IVehicleModel> repository)
+
+        public VehicleModelService(IVehicleModelRepository repository)
         {
             this.repository = repository;
         }
 
-        private IGenericRepository<IVehicleModel> repository;
+        private IVehicleModelRepository repository;
 
-        public IQueryable<IVehicleModel> GetAll()
+        public IQueryable<VehicleModel> GetAll()
         {
             return this.repository.GetAll();
-            
         }
 
-        public IQueryable<IVehicleModel> FindBy(Expression<Func<IVehicleModel, bool>> predicate)
+        public IQueryable<VehicleModel> FindBy(Expression<Func<VehicleModel, bool>> predicate)
         {
             return this.repository.FindBy(predicate);
         }
 
-        public void Add(IVehicleModel model)
+        public void Add(VehicleModel model)
         {
             this.repository.Add(model);
         }
 
-        public void Delete(IVehicleModel model)
+        public void Delete(Guid id)
         {
-            this.repository.Delete(model);
+            this.repository.Delete(id);
         }
 
-        public void Edit(IVehicleModel model)
+        public void Edit(VehicleModel model)
         {
             this.repository.Edit(model);
         }

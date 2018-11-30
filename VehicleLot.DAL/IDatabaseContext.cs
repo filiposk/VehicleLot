@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using VehicleLot.Model;
 using VehicleLot.Model.Common;
 
 namespace VehicleLot.DAL
@@ -6,7 +7,7 @@ namespace VehicleLot.DAL
     public interface IDatabaseContext
     {
         void SaveChanges();
-        IDbSet<IVehicleModel> VehicleModels { get; }
-        IDbSet<IVehicleMake> VehicleMakes { get; }
+        IDbSet<VehicleMake> VehicleMakes { get; }
+        IDbSet<VehicleModel> VehicleModels { get; }
     }
 }

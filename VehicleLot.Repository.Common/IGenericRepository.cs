@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using VehicleLot.Model.Common;
 
 namespace VehicleLot.Repository.Common
 {
@@ -13,9 +14,8 @@ namespace VehicleLot.Repository.Common
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
         void Add(T entity);
         void Edit(T entity);
-        void Delete(T entity);
+        void Delete(Guid id);
         void Save();
-        
     }
 }
 
