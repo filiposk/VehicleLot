@@ -44,13 +44,6 @@ namespace VehicleLot.WebAPI.Controllers
             Service.Delete(id);
         }
 
-        [HttpGet]
-        [Route("test")]
-        public HttpResponseMessage TestVehicleMake()
-        {
-            return Request.CreateResponse(HttpStatusCode.OK, "bravo");
-        }
-
         public void EditMyVehicleMake(VehicleMake make)
         {
             Service.Edit(make);
