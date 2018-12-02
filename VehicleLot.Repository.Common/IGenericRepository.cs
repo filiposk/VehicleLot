@@ -12,8 +12,8 @@ namespace VehicleLot.Repository.Common
     {
         IQueryable<T> GetAll();
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
-        void Add(T entity);
-        void Edit(T entity);
+        void Add(Guid id));
+        void Edit(Guid id));
         void Delete(Guid id);
         void Save();
     }

@@ -13,9 +13,9 @@ namespace VehicleLot.Service.Common
     {
         IQueryable<VehicleMake> GetAll();
         IQueryable<VehicleMake> FindBy(Expression<Func<VehicleMake, bool>> predicate);
-        void Add(VehicleMake make);
+        void Add(Guid id);
         void Delete(Guid id);
-        void Edit(VehicleMake make);
+        void Edit(Guid id);
         void Save();
         
     }

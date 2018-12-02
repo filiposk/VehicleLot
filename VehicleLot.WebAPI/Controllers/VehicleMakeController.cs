@@ -22,19 +22,25 @@ namespace VehicleLot.WebAPI.Controllers
 
         protected IVehicleMakeService Service { get; private set; }
 
+        [HttpGet]
+        [Route("makes")]
         public IQueryable<IVehicleMake> GetMyVehicleMake()
         {
             return Service.GetAll();
         }
 
+        [HttpGet]
+        [Route("make")]
         public IQueryable<IVehicleMake> FindMyVehicleMake(Expression<Func<VehicleMake, bool>> predicate)
         {
             return Service.FindBy(predicate);
         }
 
-        public void AddMyVehicleMake(VehicleMake make)
+        [HttpPost]
+        [Route("vehicle/make/{id}")]
+        public void AddMyVehicleMake([FromUri] Guid id)
         {
-            Service.Add(make);
+            Service.Add(id);
         }
 
         [HttpDelete]
@@ -44,11 +50,13 @@ namespace VehicleLot.WebAPI.Controllers
             Service.Delete(id);
         }
 
-        public void EditMyVehicleMake(VehicleMake make)
+        [HttpPatch]
+        [Route("vehicle/make/{id}")]
+        public void EditMyVehicleMake([FromUri] Guid id)
         {
-            Service.Edit(make);
+            Service.Edit(id);
         }
-
+        
         public void SaveMyVehicleMake()
         {
             Service.Save();

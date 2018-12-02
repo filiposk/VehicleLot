@@ -28,9 +28,9 @@ namespace VehicleLot.Service
             return this.repository.FindBy(predicate);
         }
 
-        public void Add(VehicleModel model)
+        public void Add(Guid id)
         {
-            this.repository.Add(model);
+            this.repository.Add(id);
         }
 
         public void Delete(Guid id)
@@ -38,9 +38,9 @@ namespace VehicleLot.Service
             this.repository.Delete(id);
         }
 
-        public void Edit(VehicleModel model)
+        public void Edit(Guid id)
         {
-            this.repository.Edit(model);
+            this.repository.Edit(id);
         }
 
         public void Save()

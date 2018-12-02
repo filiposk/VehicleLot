@@ -29,14 +29,14 @@ namespace VehicleLot.Repository
             return this.Repository.FindBy(predicate);
         }
 
-        public void Add(VehicleMake make)
+        public void Add(Guid id)
         {
-            this.Repository.Add(make);
+            this.Repository.Add(id);
         }
 
-        public void Edit(VehicleMake make)
+        public void Edit(Guid id)
         {
-            this.Repository.Edit(make);
+            this.Repository.Edit(id);
         }
 
         public void Delete(Guid id)

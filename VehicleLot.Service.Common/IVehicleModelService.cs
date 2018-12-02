@@ -10,9 +10,9 @@ namespace VehicleLot.Service.Common
     {
         IQueryable<VehicleModel> GetAll();
         IQueryable<VehicleModel> FindBy(Expression<Func<VehicleModel, bool>> predicate);
-        void Add(VehicleModel model);
+        void Add(Guid id);
         void Delete(Guid id);
-        void Edit(VehicleModel model);
+        void Edit(Guid id);
         void Save();
     }
 }

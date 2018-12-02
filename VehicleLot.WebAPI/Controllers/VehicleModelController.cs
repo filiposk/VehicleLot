@@ -17,26 +17,32 @@ namespace VehicleLot.WebAPI.Controllers
 
         protected IVehicleModelService Service { get; private set; }
 
+        [HttpGet]
+        [Route("models")]
         public IQueryable<IVehicleModel> GetMyVehicleModel()
         {
             return Service.GetAll();
         }
 
+        [HttpGet]
+        [Route("model")]
         public IQueryable<VehicleModel> FindMyVehicleModel(Expression<Func<VehicleModel, bool>> predicate)
         {
             return Service.FindBy(predicate);
         }
 
-        public void AddMyVehicleModel(VehicleModel model)
+        [HttpPut]
+        [Route("vehicle/model/{id}")]
+        public void AddMyVehicleModel([FromUri] Guid id)
         {
-            Service.Add(model);
+            Service.Add(id);
         }
 
-        [HttpGet]
-        [Route("vehicle/model/")]
-        public void EditMyVehicleModel(VehicleModel model)
+        [HttpPatch]
+        [Route("vehicle/model/{id}")]
+        public void EditMyVehicleModel([FromUri] Guid id)
         {
-            Service.Edit(model);
+            Service.Edit(id);
         }
 
         [HttpDelete]
@@ -45,9 +51,7 @@ namespace VehicleLot.WebAPI.Controllers
         {
             Service.Delete(id);
         }
-
-        [HttpPost]
-        [Route("vehicle/model/{id}")]
+        
         public void SaveMyVehicleModel()
         {
             Service.Save();

@@ -15,9 +15,9 @@ namespace VehicleLot.Repository
             this.Repository = repository;
         }
 
-        public void Add(VehicleModel model)
+        public void Add(Guid id)
         {
-            this.Repository.Add(model);
+            this.Repository.Add(id);
         }
 
         public void Delete(Guid id)
@@ -25,9 +25,9 @@ namespace VehicleLot.Repository
             this.Repository.Delete(id);
         }
 
-        public void Edit(VehicleModel model)
+        public void Edit(Guid id)
         {
-            this.Repository.Edit(model);
+            this.Repository.Edit(id);
         }
 
         public IQueryable<VehicleModel> FindBy(Expression<Func<VehicleModel, bool>> predicate)
