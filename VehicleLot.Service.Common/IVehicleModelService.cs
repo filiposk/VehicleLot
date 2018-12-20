@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using VehicleLot.Model;
 using VehicleLot.Model.Common;
 
@@ -8,11 +10,10 @@ namespace VehicleLot.Service.Common
 {
     public interface IVehicleModelService
     {
-        IQueryable<VehicleModel> GetAll();
-        IQueryable<VehicleModel> FindBy(Expression<Func<VehicleModel, bool>> predicate);
-        void Add(Guid id);
-        void Delete(Guid id);
-        void Edit(Guid id);
-        void Save();
+        Task<IList<VehicleModel>> FindByAsync(Expression<Func<VehicleModel, bool>> predicate);
+        Task AddAsync(VehicleModel model);
+        Task DeleteAsync(Guid id);
+        Task EditAsync(Guid id, VehicleModel model);
+        Task SaveAsync();
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using VehicleLot.Model;
 using VehicleLot.Model.Common;
@@ -23,43 +24,36 @@ namespace VehicleLot.WebAPI.Controllers
         protected IVehicleMakeService Service { get; private set; }
 
         [HttpGet]
-        [Route("makes")]
-        public IQueryable<IVehicleMake> GetMyVehicleMake()
-        {
-            return Service.GetAll();
-        }
-
-        [HttpGet]
         [Route("make")]
-        public IQueryable<IVehicleMake> FindMyVehicleMake(Expression<Func<VehicleMake, bool>> predicate)
+        public async Task<IList<VehicleMake>> FindMyVehicleMakeAsync(Expression<Func<VehicleMake, bool>> predicate)
         {
-            return Service.FindBy(predicate);
+            return await this.Service.FindByAsync(predicate);
         }
 
         [HttpPost]
         [Route("vehicle/make/{id}")]
-        public void AddMyVehicleMake([FromUri] Guid id)
+        public async Task AddMyVehicleMakeAsync(VehicleMake make)
         {
-            Service.Add(id);
+            await this.Service.AddAsync(make);
         }
 
         [HttpDelete]
         [Route("vehicle/make/{id}")]
-        public void DeleteMyVehicleMake([FromUri]Guid id)
+        public async Task DeleteMyVehicleMakeAsync([FromUri]Guid id)
         {
-            Service.Delete(id);
+            await this.Service.DeleteAsync(id);
         }
 
         [HttpPatch]
         [Route("vehicle/make/{id}")]
-        public void EditMyVehicleMake([FromUri] Guid id)
+        public async Task EditMyVehicleMake([FromUri] Guid id, VehicleMake make)
         {
-            Service.Edit(id);
+            await this.Service.EditAsync(id,make);
         }
         
-        public void SaveMyVehicleMake()
+        public async Task SaveMyVehicleMake()
         {
-            Service.Save();
+            await this.Service.SaveAsync();
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using System.Web.Http;
 using VehicleLot.Model;
 using VehicleLot.Model.Common;
@@ -18,43 +20,36 @@ namespace VehicleLot.WebAPI.Controllers
         protected IVehicleModelService Service { get; private set; }
 
         [HttpGet]
-        [Route("models")]
-        public IQueryable<IVehicleModel> GetMyVehicleModel()
-        {
-            return Service.GetAll();
-        }
-
-        [HttpGet]
         [Route("model")]
-        public IQueryable<VehicleModel> FindMyVehicleModel(Expression<Func<VehicleModel, bool>> predicate)
+        public async Task<IList<VehicleModel>> FindMyVehicleModelAsync(Expression<Func<VehicleModel, bool>> predicate)
         {
-            return Service.FindBy(predicate);
+            return await this.Service.FindByAsync(predicate);
         }
 
         [HttpPut]
         [Route("vehicle/model/{id}")]
-        public void AddMyVehicleModel([FromUri] Guid id)
+        public async Task AddMyVehicleModelAsync(VehicleModel model)
         {
-            Service.Add(id);
+            await this.Service.AddAsync(model);
         }
 
         [HttpPatch]
         [Route("vehicle/model/{id}")]
-        public void EditMyVehicleModel([FromUri] Guid id)
+        public async Task EditMyVehicleModelAsync([FromUri] Guid id, VehicleModel model)
         {
-            Service.Edit(id);
+            await this.Service.EditAsync(id, model);
         }
 
         [HttpDelete]
         [Route("vehicle/model/{id}")]
-        public void DeleteMyVehicleModel([FromUri] Guid id)
+        public async Task DeleteMyVehicleModelAsync([FromUri] Guid id)
         {
-            Service.Delete(id);
+            await this.Service.DeleteAsync(id);
         }
         
-        public void SaveMyVehicleModel()
+        public async Task SaveMyVehicleModelAsync()
         {
-            Service.Save();
+            await this.Service.SaveAsync();
         }
     }
 }

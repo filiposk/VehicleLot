@@ -16,14 +16,14 @@ namespace VehicleLot.Repository
     public class GenericRepository<T> : IGenericRepository<T> where T : Entity
     {
         private DatabaseContext _context;
-        private IDbSet<T> _entities;
+        private DbSet<T> _entities;
 
         public GenericRepository(DatabaseContext context)
         {
             this._context = context;
         }
 
-        private IDbSet<T> Entities
+        private DbSet<T> Entities
         {
             get
             { 
@@ -36,38 +36,35 @@ namespace VehicleLot.Repository
             }
         }
 
-        public void Add(T entity)
+        public async Task AddAsync(T entity)
         {
-            this.Entities.Add(entity); 
+             this.Entities.Add(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             this.Entities.Remove(this.Entities.Single(e => e.Id == id));
+            await _context.SaveChangesAsync();
         }
 
-        public void Edit(T entity)
+        public async Task EditAsync(Guid id, T entity)
         {
-            var edit = Entities.SingleOrDefault(e => e.Id == entity.Id);
+            var edit = await Entities.SingleOrDefaultAsync(e => e.Id == id);
             if(edit != null)
             {
                 edit = entity;
             }
         }
 
-        public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
+        public async Task<IList<T>> FindByAsync(Expression<Func<T, bool>> predicate)
         {
-           return this.Entities.Where(predicate);
+            return await this.Entities.Where(predicate).ToListAsync();
         }
 
-        public IQueryable<T> GetAll()
+        public async Task SaveAsync()
         {
-            return Entities;
-        }
-
-        public void Save()
-        {
-            this._context.SaveChanges();
+            await this._context.SaveChangesAsync();
         }
     }
 }

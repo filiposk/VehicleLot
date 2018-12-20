@@ -5,6 +5,8 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 using VehicleLot.Model.Common;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace VehicleLot.Service
 {
@@ -18,34 +20,29 @@ namespace VehicleLot.Service
 
         private IVehicleModelRepository repository;
 
-        public IQueryable<VehicleModel> GetAll()
+        public async Task<IList<VehicleModel>> FindByAsync(Expression<Func<VehicleModel, bool>> predicate)
         {
-            return this.repository.GetAll();
+            return await this.repository.FindByAsync(predicate);
         }
 
-        public IQueryable<VehicleModel> FindBy(Expression<Func<VehicleModel, bool>> predicate)
+        public async Task AddAsync(VehicleModel model)
         {
-            return this.repository.FindBy(predicate);
+            await this.repository.AddAsync(model);
         }
 
-        public void Add(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            this.repository.Add(id);
+            await this.repository.DeleteAsync(id);
         }
 
-        public void Delete(Guid id)
+        public async Task EditAsync(Guid id, VehicleModel model)
         {
-            this.repository.Delete(id);
+            await this.repository.EditAsync(id, model);
         }
 
-        public void Edit(Guid id)
+        public async Task SaveAsync()
         {
-            this.repository.Edit(id);
-        }
-
-        public void Save()
-        {
-            this.repository.Save();
+            await this.repository.SaveAsync();
         }
     }
 }

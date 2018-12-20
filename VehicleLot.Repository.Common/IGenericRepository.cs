@@ -10,12 +10,11 @@ namespace VehicleLot.Repository.Common
 {
     public interface IGenericRepository<T> 
     {
-        IQueryable<T> GetAll();
-        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
-        void Add(Guid id));
-        void Edit(Guid id));
-        void Delete(Guid id);
-        void Save();
+        Task<IList<T>> FindByAsync(Expression<Func<T, bool>> predicate);
+        Task AddAsync(T entity);
+        Task EditAsync(Guid id, T entity);
+        Task DeleteAsync(Guid id);
+        Task SaveAsync();
     }
 }
 
