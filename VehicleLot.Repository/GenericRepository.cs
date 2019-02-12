@@ -36,19 +36,19 @@ namespace VehicleLot.Repository
             }
         }
 
-        public async Task AddAsync(T entity)
+        public async Task AsyncAdd(T entity)
         {
              this.Entities.Add(entity);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task AsyncDelete(Guid id)
         {
             this.Entities.Remove(this.Entities.Single(e => e.Id == id));
             await _context.SaveChangesAsync();
         }
 
-        public async Task EditAsync(Guid id, T entity)
+        public async Task AsyncEdit(Guid id, T entity)
         {
             var edit = await Entities.SingleOrDefaultAsync(e => e.Id == id);
             if(edit != null)
@@ -57,12 +57,13 @@ namespace VehicleLot.Repository
             }
         }
 
-        public async Task<IList<T>> FindByAsync(Expression<Func<T, bool>> predicate)
+
+        public async Task<IList<T>> AsyncFindBy(Expression<Func<T, bool>> predicate)
         {
             return await this.Entities.Where(predicate).ToListAsync();
         }
 
-        public async Task SaveAsync()
+        public async Task AsyncSave()
         {
             await this._context.SaveChangesAsync();
         }

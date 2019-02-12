@@ -10,10 +10,10 @@ namespace VehicleLot.Service.Common
 {
     public interface IVehicleModelService
     {
-        Task<IList<VehicleModel>> FindByAsync(Expression<Func<VehicleModel, bool>> predicate);
-        Task AddAsync(VehicleModel model);
-        Task DeleteAsync(Guid id);
-        Task EditAsync(Guid id, VehicleModel model);
-        Task SaveAsync();
+        Task<IList<VehicleModel>> AsyncFindBy(Expression<Func<VehicleModel, bool>> predicate);
+        Task AsyncAdd(VehicleModel model);
+        Task AsyncDelete(Guid id);
+        Task AsyncEdit(Guid id, VehicleModel model);
+        Task AsyncSave();
     }
 }

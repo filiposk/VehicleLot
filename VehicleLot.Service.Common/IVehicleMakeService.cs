@@ -11,11 +11,11 @@ namespace VehicleLot.Service.Common
 {
     public interface IVehicleMakeService
     {
-        Task<IList<VehicleMake>> FindByAsync(Expression<Func<VehicleMake, bool>> predicate);
-        Task AddAsync(VehicleMake make);
-        Task DeleteAsync(Guid id);
-        Task EditAsync(Guid id, VehicleMake make);
-        Task SaveAsync();
+        Task<IList<VehicleMake>> AsyncFindBy(Expression<Func<VehicleMake, bool>> predicate);
+        Task AsyncAdd(VehicleMake make);
+        Task AsyncDelete(Guid id);
+        Task AsyncEdit(Guid id, VehicleMake make);
+        Task AsyncSave();
         
     }
 }

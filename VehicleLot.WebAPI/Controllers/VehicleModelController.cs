@@ -21,35 +21,35 @@ namespace VehicleLot.WebAPI.Controllers
 
         [HttpGet]
         [Route("model")]
-        public async Task<IList<VehicleModel>> FindMyVehicleModelAsync(Expression<Func<VehicleModel, bool>> predicate)
+        public async Task<IList<VehicleModel>> AsyncFindMyVehicleModel(Expression<Func<VehicleModel, bool>> predicate)
         {
-            return await this.Service.FindByAsync(predicate);
+            return await this.Service.AsyncFindBy(predicate);
         }
 
         [HttpPut]
         [Route("vehicle/model/{id}")]
-        public async Task AddMyVehicleModelAsync(VehicleModel model)
+        public async Task AsyncAddMyVehicleModel(VehicleModel model)
         {
-            await this.Service.AddAsync(model);
+            await this.Service.AsyncAdd(model);
         }
 
         [HttpPatch]
         [Route("vehicle/model/{id}")]
-        public async Task EditMyVehicleModelAsync([FromUri] Guid id, VehicleModel model)
+        public async Task AsyncEditMyVehicleModel([FromUri] Guid id, VehicleModel model)
         {
-            await this.Service.EditAsync(id, model);
+            await this.Service.AsyncEdit(id, model);
         }
 
         [HttpDelete]
         [Route("vehicle/model/{id}")]
-        public async Task DeleteMyVehicleModelAsync([FromUri] Guid id)
+        public async Task AsyncDeleteMyVehicleModel([FromUri] Guid id)
         {
-            await this.Service.DeleteAsync(id);
+            await this.Service.AsyncDelete(id);
         }
         
-        public async Task SaveMyVehicleModelAsync()
+        public async Task AsyncSaveMyVehicleModel()
         {
-            await this.Service.SaveAsync();
+            await this.Service.AsyncSave();
         }
     }
 }

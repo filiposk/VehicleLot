@@ -9,7 +9,7 @@ namespace VehicleLot.DAL.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "VehicleLot.DAL.DatabaseContext";
         }
 

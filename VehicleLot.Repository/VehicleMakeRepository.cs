@@ -19,29 +19,29 @@ namespace VehicleLot.Repository
             this.Repository = repository;
         }
 
-        public async Task<IList<VehicleMake>> FindByAsync(Expression<Func<VehicleMake, bool>> predicate)
+        public async Task<IList<VehicleMake>> AsyncFindBy(Expression<Func<VehicleMake, bool>> predicate)
         {
-            return await this.Repository.FindByAsync(predicate);
+            return await this.Repository.AsyncFindBy(predicate);
         }
 
-        public async Task AddAsync(VehicleMake entity)
+        public async Task AsyncAdd(VehicleMake entity)
         {
-            await this.Repository.AddAsync(entity);
+            await this.Repository.AsyncAdd(entity);
         }
 
-        public async Task EditAsync(Guid id, VehicleMake entity)
+        public async Task AsyncEdit(Guid id, VehicleMake entity)
         {
-            await this.Repository.EditAsync(id, entity);
+            await this.Repository.AsyncEdit(id, entity);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task AsyncDelete(Guid id)
         {
-            await this.Repository.DeleteAsync(id);
+            await this.Repository.AsyncDelete(id);
         }
 
-        public async Task SaveAsync()
+        public async Task AsyncSave()
         {
-            await this.Repository.SaveAsync();
+            await this.Repository.AsyncSave();
         }
     }
 }
